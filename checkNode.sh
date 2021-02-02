@@ -1,9 +1,9 @@
 checkNode() {
     for line in `node -v`; do
         echo $line
-        echo ${line:1:2}
-        
-        if [${line:1:2} -lt 10]
+        version=${line:1:2}
+        echo $version
+        if [ $version -lt 15 ]
         then
             echo -e "jjjj"
             return 0
@@ -14,3 +14,10 @@ checkNode() {
 }
 
 checkNode
+ret=$?
+if [ $ret == 1 ]
+then
+    echo success
+else
+    echo fail
+fi
